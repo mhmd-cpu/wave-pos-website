@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAVE_POS | Point of Sale Solutions</title>
+  <meta
+    name="description"
+    content="WAVE_POS provides POS systems, electronic scales, and restaurant and retail solutions in Lebanon."
+  />
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #1e3a8a;
+      --primary-2: #7c3aed;
+      --accent: #60a5fa;
+      --text: #1f2937;
+      --muted: #64748b;
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --red: #c13584;
+      --red-dark: #a52b70;
+      --dark: #111827;
+      --shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .brand small {
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 10px;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      padding: 82px 0 72px;
+      text-align: center;
+    }
+
+    .hero-box {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      opacity: 0.95;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-whatsapp {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-instagram {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-instagram:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 22px 20px 24px;
+    }
+
+    .product-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .product-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .features {
+      background: #edf4ff;
+      border-top: 1px solid rgba(30, 58, 138, 0.08);
+      border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .feature {
+      background: #fff;
+      padding: 28px 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(30, 58, 138, 0.06);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .contact {
+      background: #e8eef8;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      margin-bottom: 12px;
+    }
+
+    .contact p {
+      color: var(--text);
+      font-size: 1.08rem;
+      margin: 8px 0;
+    }
+
+    .contact-links {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px 36px;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 680px) {
+      .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card img {
+        height: 220px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        WAVE_POS<small>LEBANON</small>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#features">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.instagram.com/wavepos_/" target="_blank" rel="noopener noreferrer">
+          Instagram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-box">
+      <div class="hero-badge">POS Systems • Scales • Retail Solutions</div>
+      <h1>Welcome to WAVE_POS 🇱🇧</h1>
+      <p>
+        Smart, reliable, and modern point-of-sale and retail solutions for restaurants,
+        cafés, and businesses across Lebanon.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#products">Explore Products</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/96171167584" target="_blank" rel="noopener noreferrer">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Products</h2>
+        <p>Smart solutions for your business.</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <img
+            src="OIP.webp"
+            alt="POS System"
+          />
+          <div class="product-content">
+            <h3>POS System</h3>
+            <p>A modern point of sale solution designed for fast, smooth transactions.</p>
+            <div class="price">$750</div>
+            <a
+              class="btn btn-whatsapp"
+              href="https://wa.me/96171167584?text=Hello%20WAVE_POS%2C%20I%20am%20interested%20in%20the%20POS%20System."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Us on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img
+            src="download.webp"
+            alt="Electronic Scale"
+          />
+          <div class="product-content">
+            <h3>Electronic Scale</h3>
+            <p>Accurate electronic weighing solutions for retail and daily business use.</p>
+            <div class="price">$300</div>
+            <a
+              class="btn btn-whatsapp"
+              href="https://wa.me/96171167584?text=Hello%20WAVE_POS%2C%20I%20am%20interested%20in%20the%20Electronic%20Scale."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Us on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img
+            src="OIP (1).webp"
+            alt="Restaurant POS System"
+          />
+          <div class="product-content">
+            <h3>Restaurant POS System</h3>
+            <p>Complete POS solutions for restaurants, cafés, and food service businesses.</p>
+            <div class="price">$650</div>
+            <a
+              class="btn btn-whatsapp"
+              href="https://wa.me/96171167584?text=Hello%20WAVE_POS%2C%20I%20am%20interested%20in%20the%20Restaurant%20POS%20System."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Us on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Choose WAVE_POS?</h2>
+        <p>Reliable service, smart systems, and growth-focused solutions.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">⚙️</div>
+          <h3>Modern Technology</h3>
+          <p>Efficient tools and solutions built for everyday business operations.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📈</div>
+          <h3>Business Growth</h3>
+          <p>Improve speed, accuracy, and customer experience with better systems.</p>
+        </div>
+
+        <div class="*
+
